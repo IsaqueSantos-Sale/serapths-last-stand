@@ -8,7 +8,7 @@ export default function mageGravity(mage: Mage) {
     };
 
     const { position } = mage.sprite
-    const acceleration = 1.5
+    const acceleration = 1
 
     velocity += acceleration
     position.y += velocity

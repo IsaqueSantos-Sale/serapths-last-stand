@@ -2,8 +2,8 @@ import { keyboard } from "@Src/index";
 import Mage from "../Mage";
 
 const maxJump = 1
-const maxHeightJump = 100
-const accelerationJump = 3
+const maxHeightJump = 70
+const accelerationJump = 1.8
 const speedX = 6
 let totalJump = 0
 let heightJump = 0
