@@ -1,6 +1,6 @@
 export default class Canvas2 {
-    readonly scress = document.querySelector('canvas') as HTMLCanvasElement
-    readonly context = this.scress.getContext('2d') as CanvasRenderingContext2D
+    readonly screen = document.querySelector('canvas') as HTMLCanvasElement
+    readonly context = this.screen.getContext('2d') as CanvasRenderingContext2D
 
     readonly size = {
         x: 0,
@@ -15,21 +15,23 @@ export default class Canvas2 {
     setResolutino(x: number, y: number): this {
         this.resolution.x = x
         this.resolution.y = y
-        this.scress.width = this.resolution.x
-        this.scress.height = this.resolution.y
+        this.screen.width = this.resolution.x
+        this.screen.height = this.resolution.y
         return this
     }
 
     setSize(x: number, y: number): this {
         this.size.x = x
         this.size.y = y
-        this.scress.style.width = `${this.size.x}px`
-        this.scress.style.height = `${this.size.y}px`
+        this.screen.style.width = `${this.size.x}px`
+        this.screen.style.height = `${this.size.y}px`
         return this
     }
 
     boot() {
-        this.scress.style.border = '1px solid'
-        this.setSize(600, 450).setResolutino(650, 450)
+        this.screen.style.border = '1px solid'
+        this.screen.style.imageRendering = 'pixelated'
+        this.setSize(800, 500).setResolutino(650, 450)
+        return this
     }
 }

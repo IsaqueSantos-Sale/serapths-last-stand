@@ -7,8 +7,13 @@
     "allowJs": true,
     "strict": true,
     "esModuleInterop": true,
+    "moduleResolution": "Node",
+    "paths": {
+      "@App/*": ["./app/*"],
+      "@Src/*": ["./src/*"]
+    }
   },
-  "files": ["./src/index.ts"],
-  "include": ["./src/**/*.ts","./declarations.d.ts"],
+  "files": ["./src/index.ts","./app/index.ts"],
+  "include": ["./src/**/*.ts","./declarations.d.ts", "./app/**/*.ts"],
   "exclude": ["./node_modules"]
 }
