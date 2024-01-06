@@ -31,7 +31,7 @@ export default class Canvas2 {
     boot() {
         this.screen.style.border = '1px solid'
         this.screen.style.imageRendering = 'pixelated'
-        this.setSize(800, 500).setResolutino(650, 450)
+        this.setSize(800, 450).setResolutino(650, 450)
         return this
     }
 }

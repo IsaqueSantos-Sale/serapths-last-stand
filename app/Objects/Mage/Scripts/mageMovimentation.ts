@@ -2,16 +2,17 @@ import { keyboard } from "@Src/index";
 import Mage from "../Mage";
 
 const maxJump = 1
-const maxHeightJump = 130
-const accelerationJump = 5
+const maxHeightJump = 100
+const accelerationJump = 3
 const speedX = 6
 let totalJump = 0
 let heightJump = 0
 let velocityJump = 0
+let inAir = false
 
 export default function mageMovimentation(mage: Mage) {
     const { position } = mage.sprite
-    const { isDown } = keyboard
+    const { isDown, reset } = keyboard
 
     if (isDown('KeyA')) {
         position.x -= speedX
@@ -21,13 +22,18 @@ export default function mageMovimentation(mage: Mage) {
         position.x += speedX
     }
 
-    if (mage.inFloor && isDown('Space') && totalJump < maxJump) {
+    if ((mage.inFloor || mage.inJump || inAir) && isDown('Space') && totalJump < maxJump) {
+        heightJump = 0
+        velocityJump = 0
         mage.inJump = true
         mage.inFloor = false
         totalJump++
+        console.log(totalJump)
+
     }
 
     if (mage.inJump && heightJump <= maxHeightJump) {
+        inAir = true
         velocityJump += accelerationJump
         heightJump += velocityJump
         position.y -= velocityJump
@@ -37,7 +43,8 @@ export default function mageMovimentation(mage: Mage) {
         mage.inJump = false
     }
 
-    if (mage.inFloor && !mage.inJump) {
+
+    if (mage.inFloor) {
         totalJump = 0
         velocityJump = 0
         heightJump = 0

@@ -4,7 +4,7 @@ import mageMovimentation from "./Scripts/mageMovimentation"
 import mageGravity from "./Scripts/mageGravity"
 
 export default class Mage {
-    sprite = new Box2(100, 100, 16, 16)
+    sprite = new Box2(100, 100, 30, 30)
     inFloor = false
     inJump = false
 
