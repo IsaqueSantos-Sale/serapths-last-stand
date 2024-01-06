@@ -4,7 +4,7 @@ import Mage from "../Mage";
 const maxJump = 1
 const maxHeightJump = 70
 const accelerationJump = 1.8
-const speedX = 6
+const speedX = 3
 let totalJump = 0
 let heightJump = 0
 let velocityJump = 0
