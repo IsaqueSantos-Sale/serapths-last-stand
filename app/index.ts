@@ -7,7 +7,7 @@ const mage = new Mage()
 const size = 30
 const floors: Floor[] = [
     new Floor(0, canvas.resolution.y - (size * 5), size),
-    
+
     new Floor(size, canvas.resolution.y - (size * 4), size),
     new Floor(size * 2, canvas.resolution.y - (size * 3), size),
     new Floor(size * 3, canvas.resolution.y - (size * 2), size),
@@ -39,7 +39,10 @@ const floors: Floor[] = [
 
 const update = () => {
     mage.update()
-    mage.floorsCollider(floors)
+}
+
+const collider = () => {
+    mage.collider(floors)
 }
 
 const render = () => {
@@ -53,6 +56,7 @@ const loop = () => {
     canvas.context.fillRect(0, 0, canvas.size.x, canvas.size.y) // BG black
 
     update()
+    collider()
     render()
 
     requestAnimationFrame(loop)
