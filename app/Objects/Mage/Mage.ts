@@ -2,23 +2,20 @@ import Box2 from "@Src/Draw/Box2";
 import { canvas, keyboard } from "@Src/index";
 import Floor from "../Floor";
 import solidColliderBox2 from "@Src/Physical/solidColliderBox2";
+import Staff from "./Staff";
+import GravityY from "@Src/Physical/GravityY";
 
 export default class Mage {
   sprite = new Box2(100, 100, 30, 60);
+  gravity = new GravityY(1.6);
+  staff = new Staff(this);
+
   inFloor = false;
-  falling = {
-    acceleration: 1,
-    velocity: 0,
-  };
+
   jump = {
-    heigth: 0,
-    maxHeigth: 50,
-    acceleration: 1,
-    velocity: 0,
-    maxJumps: 2,
-    totalJumps: 0,
+    totalHeight: 0,
+    maxHeight: 30,
     actived: false,
-    inAir: false,
   };
 
   constructor() {
@@ -26,31 +23,26 @@ export default class Mage {
   }
 
   onJump() {
-    const { isDown, reset } = keyboard;
-
-    if (this.inFloor && isDown("Space")) {
-      this.inFloor = false;
+    if (!this.jump.actived && this.inFloor && keyboard.isDown("Space")) {
       this.jump.actived = true;
-      reset("Space");
+      this.inFloor = false;
+      this.gravity.resetAndInvert();
+      keyboard.reset("Space");
     }
 
-    if (this.jump.actived && this.jump.heigth <= this.jump.maxHeigth) {
-      this.jump.velocity += this.jump.acceleration;
-      this.jump.heigth += this.jump.velocity;
-      this.sprite.position.y -= this.jump.velocity;
-      return;
+    if (this.jump.actived) {
+      this.jump.totalHeight += this.gravity.getVelocity();
     }
 
-    this.jump.actived = false;
-    this.jump.velocity = 0;
-    this.jump.heigth = 0;
+    if (this.jump.actived && this.jump.totalHeight >= this.jump.maxHeight) {
+      this.jump.actived = false;
+      this.jump.totalHeight = 0;
+      this.gravity.resetAndInvert();
+    }
   }
 
   onFallingDown() {
-    if (this.jump.actived) return;
-
-    this.falling.velocity += this.falling.acceleration;
-    this.sprite.position.y += this.falling.velocity;
+    this.gravity.apply(this.sprite.position);
   }
 
   onMovimentationX() {
@@ -91,8 +83,8 @@ export default class Mage {
     for (const floor of floors) {
       solidColliderBox2(this.sprite, floor.sprite, {
         onTop: ({ overlapY }) => {
+          this.gravity.reset();
           this.inFloor = true;
-          this.falling.velocity = 0;
           this.sprite.position.y -= overlapY;
         },
         onLeft: ({ overlapX }) => {
@@ -105,18 +97,23 @@ export default class Mage {
     }
   }
 
-  update() {
-    this.onJump();
-    this.onFallingDown();
-    this.onBordersCollider();
-    this.onMovimentationX();
-  }
-
   collider(floors: Floor[]) {
     this.floorsCollider(floors);
   }
 
+  update(floors: Floor[]) {
+    this.onJump();
+    this.onFallingDown();
+    this.onBordersCollider();
+    this.onMovimentationX();
+
+    this.collider(floors);
+
+    this.staff.update();
+  }
+
   render() {
     this.sprite.fill(canvas.context);
+    this.staff.render();
   }
 }
