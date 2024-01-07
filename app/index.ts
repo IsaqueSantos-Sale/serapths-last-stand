@@ -5,9 +5,9 @@ import Floor from "./Objects/Floor"
 const mage = new Mage()
 
 const size = 30
-const floors = [
+const floors: Floor[] = [
     new Floor(0, canvas.resolution.y - (size * 5), size),
-    //
+    
     new Floor(size, canvas.resolution.y - (size * 4), size),
     new Floor(size * 2, canvas.resolution.y - (size * 3), size),
     new Floor(size * 3, canvas.resolution.y - (size * 2), size),
@@ -23,7 +23,7 @@ const floors = [
     new Floor(size * 10, canvas.resolution.y - (size * 3), size),
     //
     new Floor(size * 11, canvas.resolution.y - (size * 2), size),
-    //
+    //d
     new Floor(size * 12, canvas.resolution.y - (size * 1), size),
     new Floor(size * 13, canvas.resolution.y - (size * 1), size),
     new Floor(size * 14, canvas.resolution.y - (size * 1), size),
@@ -39,7 +39,7 @@ const floors = [
 
 const update = () => {
     mage.update()
-    floors.forEach((floor) => floor.update())
+    mage.floorsCollider(floors)
 }
 
 const render = () => {

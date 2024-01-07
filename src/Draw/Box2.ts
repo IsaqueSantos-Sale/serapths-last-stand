@@ -12,6 +12,7 @@ export default class Box2 {
         this.size.set(sizeX, sizeY)
         this.origin.set(x + sizeX / 2, y + sizeY / 2)
     }
+    
 
     fill(ctx: CanvasRenderingContext2D) {
         ctx.save()

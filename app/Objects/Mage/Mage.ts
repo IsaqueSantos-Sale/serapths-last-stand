@@ -1,18 +1,36 @@
 import Box2 from "@Src/Draw/Box2"
-import { canvas } from "@Src/index"
-import mageMovimentation from "./Scripts/mageMovimentation"
-import mageGravity from "./Scripts/mageGravity"
+import { canvas, keyboard } from "@Src/index"
+import Floor from "../Floor"
+import Gravity from "@Src/Physical/Gravity"
+import solidColliderBox2 from "@Src/Physical/solidColliderBox2"
 
 export default class Mage {
     sprite = new Box2(100, 100, 30, 60)
-    inFloor = false
-    inJump = false
+    speedX = 4
 
     constructor() {
         this.sprite.fillColor = 'white'
     }
 
-    bordersCollider() {
+
+    onJump() { }
+
+    onFallingDown() { }
+
+    onMovimentationX() {
+        const { position } = this.sprite
+        const { isDown } = keyboard
+
+        if (isDown('KeyA')) {
+            position.x -= this.speedX
+        }
+
+        if (isDown('KeyD')) {
+            position.x += this.speedX
+        }
+    }
+
+    onBordersCollider() {
         const { position, size } = this.sprite
         const { resolution } = canvas
 
@@ -28,16 +46,26 @@ export default class Mage {
             position.y = 0
         }
 
-        if (position.y + size.y >= resolution.y) {
+        if (position.y + size.y > resolution.y) {
             position.y = resolution.y - size.y
-            this.inFloor = true
+        }
+    }
+
+    floorsCollider(floors: Floor[]) {
+        for (const floor of floors) {
+            solidColliderBox2(this.sprite, floor.sprite, {
+                onTop: ({ overlapY }) => {
+                    this.sprite.position.y -= overlapY
+                }
+            })
         }
     }
 
     update() {
-        mageGravity(this)
-        mageMovimentation(this)
-        this.bordersCollider()
+        this.onJump()
+        this.onFallingDown()
+        this.onBordersCollider()
+        this.onMovimentationX()
     }
 
     render() {
