@@ -1,6 +1,7 @@
 import { canvas } from "@Src/index";
 import Mage from "./Objects/Mage";
 import Floor from "./Objects/Floor";
+import Arc2 from "@Src/Draw/Arc2";
 
 const mage = new Mage();
 
