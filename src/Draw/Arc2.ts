@@ -12,9 +12,11 @@ export default class Arc2 {
 
   fill(ctx: CanvasRenderingContext2D) {
     ctx.save();
+    ctx.beginPath();
     ctx.fillStyle = this.fillColor;
     ctx.arc(this.positino.x, this.positino.y, this.radius, 0, 2 * Math.PI);
     ctx.fill();
+    ctx.closePath();
     ctx.restore();
   }
 }
