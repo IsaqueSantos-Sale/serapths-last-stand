@@ -2,8 +2,8 @@ import Box2 from "@Src/Draw/Box2";
 import Mage from "../Mage";
 import { canvas, mouse } from "@Src/index";
 import Magic from "./Magic";
-import Arc2 from "@Src/Draw/Arc2";
 import relativeWith from "@Src/Maths/relativeWith";
+import rotateToDirection from "@Src/Maths/rotateToDirection";
 
 export default class Staff {
   sprite = new Box2(0, 0, 70, 4);
@@ -18,25 +18,11 @@ export default class Staff {
   }
 
   onThrowMagic() {
-    if (!mouse.isDown) return;
-
+    rotateToDirection(this.sprite, this.sprite.position, mouse);
     relativeWith(this.magic.sprite, this.sprite, {
-      x: this.sprite.size.x - 12,
-      y: this.sprite.size.y / 2,
+      x: this.sprite.size.x - this.magic.sprite.radius * 2,
+      y: this.sprite.size.halfY(),
     });
-
-    this.magic.directionX = this.directionX;
-    this.magic.directionY = this.directionY;
-  }
-
-  onRotate() {
-    const distanceX = mouse.x - this.sprite.centerX();
-    const distanceY = mouse.y - this.sprite.centerY();
-    const hypt = Math.sqrt(distanceX ** 2 + distanceY ** 2);
-
-    this.directionX = distanceX / hypt;
-    this.directionY = distanceY / hypt;
-    this.sprite.rotate = Math.atan2(distanceY, distanceX);
   }
 
   onFixInMage() {
@@ -52,7 +38,6 @@ export default class Staff {
 
   update() {
     this.onFixInMage();
-    this.onRotate();
     this.onThrowMagic();
     this.magic.update();
   }
