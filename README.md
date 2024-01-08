@@ -1,15 +1,1 @@
-# 🚀 Welcome to your new awesome project!
-
-This project has been created using **webpack-cli**, you can now run
-
-```
-npm run build
-```
-
-or
-
-```
-yarn build
-```
-
-to bundle your application
+[![Netlify Status](https://api.netlify.com/api/v1/badges/0ec5a8b7-c700-4281-9cb3-e2ad690a99f7/deploy-status)](https://app.netlify.com/sites/zingy-souffle-c865e1/deploys)
