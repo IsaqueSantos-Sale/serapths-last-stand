@@ -8,7 +8,7 @@ import Object from "../Object";
 
 export default class Mage extends Object {
   sprite = new Box2(100, 100, 30, 60);
-  gravity = new GravityY(1.6);
+  gravity = new GravityY(1.3);
   staff = new Staff(this);
 
   inFloor = false;
