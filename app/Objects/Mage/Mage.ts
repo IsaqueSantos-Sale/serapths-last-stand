@@ -1,9 +1,9 @@
 import Box2 from "@Src/Draw/Box2";
 import { canvas, keyboard } from "@Src/index";
 import Floor from "../Floor";
-import solidColliderBox2 from "@Src/Physical/solidColliderBox2";
 import Staff from "../Staff";
 import GravityY from "@Src/Physical/GravityY";
+import colliderBox2 from "@Src/colliders/colliderBox2";
 
 export default class Mage {
   sprite = new Box2(100, 100, 30, 60);
@@ -81,7 +81,7 @@ export default class Mage {
 
   floorsCollider(floors: Floor[]) {
     for (const floor of floors) {
-      solidColliderBox2(this.sprite, floor.sprite, {
+      colliderBox2(this.sprite, floor.sprite, {
         onTop: ({ overlapY }) => {
           this.gravity.reset();
           this.inFloor = true;

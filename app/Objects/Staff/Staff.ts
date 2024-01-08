@@ -3,9 +3,12 @@ import Mage from "../Mage";
 import { canvas, mouse } from "@Src/index";
 import relativeWith from "@Src/Maths/relativeWith";
 import rotateToDirection from "@Src/Maths/rotateToDirection";
+import Magic from "../Magic";
+import getDirection from "@Src/Maths/getDirection";
 
 export default class Staff {
   sprite = new Box2(0, 0, 70, 4);
+  shoots: Magic[] = [];
 
   constructor(private readonly mage: Mage) {
     this.sprite.fillColor = "brown";
@@ -22,12 +25,34 @@ export default class Staff {
     });
   }
 
+  onShoot() {
+    if (!mouse.isDown) return;
+    const magic = new Magic();
+    const { x, y } = getDirection(this.sprite.position, mouse);
+    relativeWith(magic.sprite, this.sprite, {
+      x: this.sprite.size.x - magic.sprite.radius * 2,
+    });
+    magic.directionX = x;
+    magic.directionY = y;
+
+    this.shoots.push(magic);
+
+    magic.destroy = () => {
+      delete this.shoots[this.shoots.length];
+    };
+
+    mouse.isDown = false;
+  }
+
   update() {
     this.onFixInMage();
     this.onRotate();
+    this.onShoot();
+    this.shoots.forEach((s) => s.update());
   }
 
   render() {
     this.sprite.fill(canvas.context);
+    this.shoots.forEach((s) => s.render());
   }
 }

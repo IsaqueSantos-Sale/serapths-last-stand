@@ -13,6 +13,10 @@ export default class Magic {
     this.sprite.fillColor = "blue";
   }
 
+  destroy = () => {};
+
+  destroyOn() {}
+
   onMoviment() {
     this.sprite.position.x += this.directionX * this.speed;
     this.sprite.position.y += this.directionY * this.speed;

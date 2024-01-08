@@ -19,7 +19,7 @@ export type ColliderHandlers = {
   rule?: ColliderHandlerRule;
 };
 
-export default function solidColliderBox2(
+export default function colliderBox2(
   box1: Box2,
   box2: Box2,
   handlers: ColliderHandlers = {}
