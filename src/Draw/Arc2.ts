@@ -3,6 +3,8 @@ import Axes from "./Modules/Axes";
 export default class Arc2 {
   readonly position: Axes = new Axes();
   readonly origin: Axes = new Axes();
+  readonly direction: Axes = new Axes();
+
   radius: number = 1;
   fillColor = "black";
   rotate = 0;

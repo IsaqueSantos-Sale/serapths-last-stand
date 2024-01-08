@@ -7,6 +7,13 @@ export default class Axes {
     this.y = y;
   }
 
+  get() {
+    return {
+      x: this.x,
+      y: this.y,
+    };
+  }
+
   halfX() {
     return this.x / 2;
   }

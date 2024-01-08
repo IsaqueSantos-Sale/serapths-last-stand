@@ -1,3 +1,4 @@
+import Object from "@App/Objects/Object";
 import { Axles } from "@Src/Types";
 
 export type RelativeData = {
@@ -6,25 +7,23 @@ export type RelativeData = {
   rotate: number;
 };
 
-export type RelativeAjust = {
-  rotate: number;
-} & Axles;
-
 export default function relativeWith(
-  target: RelativeData,
-  base: RelativeData,
-  ajust: Partial<RelativeAjust> = { x: 0, y: 0, rotate: 0 }
+  target: Object,
+  base: Object,
+  options?: Partial<Axles>
 ) {
-  let { x, y, rotate } = ajust;
-  if (!x) x = 0;
-  if (!y) y = 0;
-  if (!rotate) rotate = 0;
+  let { x, y } = options ?? {};
 
-  target.origin.x = base.origin.x - x;
-  target.origin.y = base.origin.y - y;
+  if (x) {
+    target.setOriginX(-(base.getOriginX() + x));
+  }
 
-  target.rotate = base.rotate + rotate;
+  if (y) {
+    target.setOriginY(-(base.getOriginY() + y));
+  }
 
-  target.position.x = base.position.x + x;
-  target.position.y = base.position.y + y;
+  target.setRotate(Math.atan2(base.getDirectionY(), base.getDirectionX()));
+
+  target.setX(base.transladedX() - target.getOriginX());
+  target.setY(base.transladedY() - target.getOriginY());
 }

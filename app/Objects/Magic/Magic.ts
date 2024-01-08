@@ -1,15 +1,14 @@
 import Arc2 from "@Src/Draw/Arc2";
 import { canvas } from "@Src/index";
+import Object from "../Object";
 
-export default class Magic {
-  sprite = new Arc2(0, 0, 2);
+export default class Magic extends Object {
+  sprite = new Arc2(0, 0, 5);
 
   speed = 10;
 
-  directionX: number = 0;
-  directionY: number = 0;
-
   constructor() {
+    super();
     this.sprite.fillColor = "blue";
   }
 
@@ -18,12 +17,13 @@ export default class Magic {
   destroyOn() {}
 
   onMoviment() {
-    this.sprite.position.x += this.directionX * this.speed;
-    this.sprite.position.y += this.directionY * this.speed;
+    this.sprite.position.x += this.getDirectionX() * this.speed;
+    this.sprite.position.y += this.getDirectionY() * this.speed;
   }
 
   update() {
     this.onMoviment();
+    this.destroyOn();
   }
 
   render() {

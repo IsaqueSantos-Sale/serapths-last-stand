@@ -4,8 +4,9 @@ import Floor from "../Floor";
 import Staff from "../Staff";
 import GravityY from "@Src/Physical/GravityY";
 import colliderBox2 from "@Src/colliders/colliderBox2";
+import Object from "../Object";
 
-export default class Mage {
+export default class Mage extends Object {
   sprite = new Box2(100, 100, 30, 60);
   gravity = new GravityY(1.6);
   staff = new Staff(this);
@@ -19,6 +20,7 @@ export default class Mage {
   };
 
   constructor() {
+    super();
     this.sprite.fillColor = "white";
   }
 

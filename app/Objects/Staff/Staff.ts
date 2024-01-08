@@ -5,43 +5,42 @@ import relativeWith from "@Src/Maths/relativeWith";
 import rotateToDirection from "@Src/Maths/rotateToDirection";
 import Magic from "../Magic";
 import getDirection from "@Src/Maths/getDirection";
+import Object from "../Object";
 
-export default class Staff {
+export default class Staff extends Object {
   sprite = new Box2(0, 0, 70, 4);
   shoots: Magic[] = [];
 
   constructor(private readonly mage: Mage) {
+    super();
     this.sprite.fillColor = "brown";
+    this.setOriginX(20);
   }
 
   onRotate() {
-    rotateToDirection(this.sprite, this.sprite.position, mouse);
+    rotateToDirection(this, this.transladed(), mouse);
   }
 
   onFixInMage() {
-    relativeWith(this.sprite, this.mage.sprite, {
-      x: this.mage.sprite.size.halfX() - this.sprite.size.halfX() + 10,
-      y: this.mage.sprite.size.halfY(),
-    });
+    relativeWith(this, this.mage);
   }
 
   onShoot() {
     if (!mouse.isDown) return;
-    const magic = new Magic();
-    const { x, y } = getDirection(this.sprite.position, mouse);
-    relativeWith(magic.sprite, this.sprite, {
-      x: this.sprite.size.x - magic.sprite.radius * 2,
-    });
-    magic.directionX = x;
-    magic.directionY = y;
 
-    this.shoots.push(magic);
+    const magic = new Magic();
+
+    relativeWith(magic, this, {
+      x: 30,
+    });
+
+    magic.setDirection(getDirection(magic.transladed(), mouse));
 
     magic.destroy = () => {
       delete this.shoots[this.shoots.length];
     };
 
-    mouse.isDown = false;
+    this.shoots.push(magic);
   }
 
   update() {

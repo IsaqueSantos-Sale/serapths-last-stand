@@ -1,7 +1,8 @@
+import Object from "@App/Objects/Object";
 import { Axles } from "@Src/Types";
 
 export default function directionTo(
-  target: Axles,
+  target: Object,
   from: Axles,
   to: Axles,
   speed: number = 2
@@ -10,6 +11,6 @@ export default function directionTo(
   const distanceY = to.y - from.y;
   const hypt = Math.sqrt(distanceX ** 2 + distanceY ** 2);
 
-  target.x += (distanceX / hypt) * speed;
-  target.y += (distanceY / hypt) * speed;
+  target.incrementX((distanceX / hypt) * speed);
+  target.incrementY((distanceY / hypt) * speed);
 }

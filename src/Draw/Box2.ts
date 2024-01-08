@@ -4,6 +4,7 @@ export default class Box2 {
   readonly position: Axes = new Axes();
   readonly size: Axes = new Axes();
   readonly origin: Axes = new Axes();
+  readonly direction: Axes = new Axes();
   rotate: number = 0;
   fillColor: string = "black";
 

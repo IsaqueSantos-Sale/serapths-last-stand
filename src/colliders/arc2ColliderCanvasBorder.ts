@@ -1,13 +1,13 @@
 import Arc2 from "@Src/Draw/Arc2";
 import { canvas } from "..";
 
-type Handler = (overlap: number) => void;
+type Handler = () => void;
 type Handlers = {
-  onLeft: Handler;
-  onRight: Handler;
-  onTop: Handler;
-  onDown: Handler;
-  onAny: Handler;
+  onLeft?: Handler;
+  onRight?: Handler;
+  onTop?: Handler;
+  onDown?: Handler;
+  onAny?: Handler;
 };
 
 export default function arc2ColliderCanvasBorder(
@@ -19,22 +19,22 @@ export default function arc2ColliderCanvasBorder(
   const { resolution } = canvas;
 
   if (position.x <= 0) {
-    onAny(0);
-    onLeft(0);
+    !onAny || onAny();
+    !onLeft || onLeft();
   }
 
   if (position.x + radius >= resolution.x) {
-    onRight(resolution.x + radius);
-    onAny(resolution.x + radius);
+    !onAny || onAny();
+    !onRight || onRight();
   }
 
   if (position.y <= 0) {
-    onTop(0);
-    onAny(0);
+    !onAny || onAny();
+    !onTop || onTop();
   }
 
-  if (position.y + radius > resolution.y) {
-    onDown(resolution.y + radius);
-    onAny(resolution.y + radius);
+  if (position.y + radius >= resolution.y) {
+    !onAny || onAny();
+    !onDown || onDown();
   }
 }
