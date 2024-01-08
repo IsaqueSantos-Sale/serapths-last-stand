@@ -2,7 +2,7 @@ import Box2 from "@Src/Draw/Box2";
 import { canvas, keyboard } from "@Src/index";
 import Floor from "../Floor";
 import solidColliderBox2 from "@Src/Physical/solidColliderBox2";
-import Staff from "./Staff";
+import Staff from "../Staff";
 import GravityY from "@Src/Physical/GravityY";
 
 export default class Mage {

@@ -1,7 +1,7 @@
 import Box2 from "@Src/Draw/Box2";
 import Mage from "../Mage";
 import { canvas, mouse } from "@Src/index";
-import Magic from "./Magic";
+import Magic from "../Magic";
 import relativeWith from "@Src/Maths/relativeWith";
 import rotateToDirection from "@Src/Maths/rotateToDirection";
 
