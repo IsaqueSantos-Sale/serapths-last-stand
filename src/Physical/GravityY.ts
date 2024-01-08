@@ -1,4 +1,4 @@
-export type Axle = { y: number };
+export type GravityAxle = { y: number };
 
 export default class GravityY {
   private acceleration: number = 0;
@@ -13,7 +13,7 @@ export default class GravityY {
     return this.velocity;
   }
 
-  apply(axle: Axle) {
+  apply(axle: GravityAxle) {
     this.velocity += this.acceleration;
 
     if (this.inverted) {
