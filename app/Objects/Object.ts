@@ -5,9 +5,6 @@ import { Axles } from "@Src/Types";
 export default abstract class Object {
   abstract sprite: Box2 | Arc2;
 
-  update = () => {};
-  render = () => {};
-
   x() {
     return this.sprite.position.x;
   }
