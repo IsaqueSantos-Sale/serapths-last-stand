@@ -1,4 +1,4 @@
-import { canvas } from "@Src/index";
+import { canvas, loop } from "@Src/index";
 import Mage from "./Objects/Mage";
 import Floor from "./Objects/Floor";
 
@@ -37,23 +37,14 @@ const floors: Floor[] = [
   new Floor(size * 21, canvas.resolution.y - size * 6, size),
 ];
 
-const update = () => {
+loop.update = () => {
   mage.update(floors);
 };
 
-const render = () => {
-  mage.render();
-  floors.forEach((floor) => floor.render());
-};
-
-const loop = () => {
+loop.render = () => {
   canvas.context.clearRect(0, 0, canvas.size.x, canvas.size.y);
   canvas.context.fillRect(0, 0, canvas.size.x, canvas.size.y); // BG black
 
-  update();
-  render();
-
-  requestAnimationFrame(loop);
+  mage.render();
+  floors.forEach((floor) => floor.render());
 };
-
-loop();
