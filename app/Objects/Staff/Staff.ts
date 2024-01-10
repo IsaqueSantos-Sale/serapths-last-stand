@@ -1,4 +1,4 @@
-import Box2 from "@Src/Draw/Box2";
+import Box2 from "@Src/Geometries/Box2";
 import Mage from "../Mage";
 import { canvas, mouse } from "@Src/index";
 import relativeWith from "@Src/Maths/relativeWith";

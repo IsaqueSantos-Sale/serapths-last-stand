@@ -1,4 +1,4 @@
-import Box2 from "@Src/Draw/Box2";
+import Box2 from "@Src/Geometries/Box2";
 
 export type ColliderData = {
   overlapX: number;

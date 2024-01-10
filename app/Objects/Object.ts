@@ -1,5 +1,5 @@
-import Arc2 from "@Src/Draw/Arc2";
-import Box2 from "@Src/Draw/Box2";
+import Arc2 from "@Src/Geometries/Arc2";
+import Box2 from "@Src/Geometries/Box2";
 import { Axles } from "@Src/Types";
 
 export default abstract class Object {
