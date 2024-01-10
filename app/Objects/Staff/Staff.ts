@@ -29,9 +29,8 @@ export default class Staff extends Object {
   }
 
   onShoot() {
-    if (!mouse.isDown) return;
-
     if (!this.timerShoot.run().hasElapsed()) return;
+    if (!mouse.isDown) return;
 
     const magic = new Magic();
 
