@@ -6,9 +6,12 @@ import rotateToDirection from "@Src/Maths/rotateToDirection";
 import Magic from "../Magic";
 import getDirection from "@Src/Maths/getDirection";
 import Object from "../Object";
+import Timer from "@Src/Events/Timer";
 
 export default class Staff extends Object {
   sprite = new Box2(0, 0, 70, 4);
+
+  timerShoot: Timer = new Timer(1000);
   shoots: Magic[] = [];
 
   constructor(private readonly mage: Mage) {
@@ -28,6 +31,8 @@ export default class Staff extends Object {
   onShoot() {
     if (!mouse.isDown) return;
 
+    if (!this.timerShoot.run().hasElapsed()) return;
+
     const magic = new Magic();
 
     relativeWith(magic, this, {
@@ -41,6 +46,8 @@ export default class Staff extends Object {
     };
 
     this.shoots.push(magic);
+
+    this.timerShoot.reset();
   }
 
   update() {
