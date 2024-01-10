@@ -1,8 +1,12 @@
 import { canvas, loop } from "@Src/index";
 import Mage from "./Objects/Mage";
 import Floor from "./Objects/Floor";
+import Enemy from "./Objects/Enemy";
 
 const mage = new Mage();
+const enemy = new Enemy();
+
+enemy.targets.push(mage);
 
 const size = 30;
 const floors: Floor[] = [
@@ -39,6 +43,7 @@ const floors: Floor[] = [
 
 loop.update = () => {
   mage.update(floors);
+  enemy.update();
 };
 
 loop.render = () => {
@@ -46,5 +51,7 @@ loop.render = () => {
   canvas.context.fillRect(0, 0, canvas.size.x, canvas.size.y); // BG black
 
   mage.render();
+  enemy.render();
+
   floors.forEach((floor) => floor.render());
 };

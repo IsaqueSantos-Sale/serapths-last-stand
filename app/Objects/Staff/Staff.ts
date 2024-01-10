@@ -11,7 +11,7 @@ import Timer from "@Src/Events/Timer";
 export default class Staff extends Object {
   sprite = new Box2(0, 0, 70, 4);
 
-  timerShoot: Timer = new Timer(1000);
+  timerShoot: Timer = new Timer(500);
   shoots: Magic[] = [];
 
   constructor(private readonly mage: Mage) {
