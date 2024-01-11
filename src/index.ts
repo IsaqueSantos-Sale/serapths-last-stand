@@ -13,4 +13,23 @@ export const loop = new Loop(time);
 export const scenes = new GameScenesHandler();
 
 keyboard.addKeys(["Space", "KeyA", "KeyW", "KeyS", "KeyD"]);
+
+loop.update = () => {
+  const scene = scenes.current();
+
+  if (scene) {
+    scene.onUpdate();
+  }
+};
+
+loop.render = () => {
+  canvas.context.clearRect(0, 0, canvas.size.x, canvas.size.y);
+
+  const scene = scenes.current();
+
+  if (scene) {
+    scene.onRender();
+  }
+};
+
 loop.start();
