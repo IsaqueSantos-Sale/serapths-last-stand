@@ -2,14 +2,15 @@ import Box2 from "@Src/Geometries/Box2";
 import GameObject from "../GameObject";
 import { canvas } from "@Src/index";
 import Mage from "../Mage";
+import GameScene from "@App/Scenes/GameScene";
 
 export default class Enemy extends GameObject {
   sprite: Box2 = new Box2(200, 100, 60, 20);
   targets: Mage[] = [];
   currentTarget: Mage | null = null;
 
-  constructor() {
-    super();
+  constructor(scene: GameScene) {
+    super(scene);
     this.sprite.fillColor = "red";
   }
 
@@ -32,12 +33,12 @@ export default class Enemy extends GameObject {
     );
   }
 
-  update = () => {
+  onUpdate() {
     this.findTarget();
     this.followCurrentTarget();
-  };
+  }
 
-  render = () => {
+  onRender(): void {
     this.sprite.fill(canvas.context);
-  };
+  }
 }

@@ -1,19 +1,18 @@
 import Box2 from "@Src/Geometries/Box2";
 import { canvas } from "@Src/index";
 import GameObject from "../GameObject";
+import GameScene from "@App/Scenes/GameScene";
 
 export default class Floor extends GameObject {
   readonly sprite: Box2;
 
-  constructor(x: number, y: number, size: number) {
-    super();
+  constructor(scene: GameScene, x: number, y: number, size: number) {
+    super(scene, ["floor"]);
     this.sprite = new Box2(x, y, size, size);
     this.sprite.fillColor = "green";
   }
 
-  update() {}
-
-  render() {
+  onRender() {
     this.sprite.fill(canvas.context);
   }
 }

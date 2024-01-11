@@ -5,11 +5,12 @@ import Staff from "../Staff";
 import GravityY from "@Src/Physical/GravityY";
 import colliderBox2 from "@Src/colliders/colliderBox2";
 import GameObject from "../GameObject";
+import GameScene from "@App/Scenes/GameScene";
 
 export default class Mage extends GameObject {
   sprite = new Box2(100, 100, 30, 60);
   gravity = new GravityY(1.3);
-  staff = new Staff(this);
+  staff: Staff;
 
   inFloor = false;
 
@@ -19,8 +20,9 @@ export default class Mage extends GameObject {
     actived: false,
   };
 
-  constructor() {
-    super();
+  constructor(scene: GameScene) {
+    super(scene);
+    this.staff = new Staff(scene, this);
     this.sprite.fillColor = "white";
   }
 
@@ -99,23 +101,24 @@ export default class Mage extends GameObject {
     }
   }
 
-  collider(floors: Floor[]) {
-    this.floorsCollider(floors);
-  }
-
-  update(floors: Floor[]) {
+  onUpdate() {
     this.onJump();
     this.onFallingDown();
     this.onBordersCollider();
     this.onMovimentationX();
-
-    this.collider(floors);
-
-    this.staff.update();
   }
 
-  render() {
+  onCollider() {
+    const floors = this.scene.objects.findByTags<Floor>(["floor"]);
+    this.floorsCollider(floors);
+  }
+
+  onUpdateChild(): void {
+    this.staff.callUpdate();
+  }
+
+  onRender() {
     this.sprite.fill(canvas.context);
-    this.staff.render();
+    this.staff.callRender();
   }
 }

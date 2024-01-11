@@ -1,10 +1,11 @@
 import Box2 from "@Src/Geometries/Box2";
-import Mage from "../Mage";
-import { canvas, mouse } from "@Src/index";
 import Magic from "../Magic";
 import getDirection from "@Src/Geometries/Maths/getDirection";
 import GameObject from "../GameObject";
 import Timer from "@Src/Events/Timer";
+import { canvas, mouse } from "@Src/index";
+import GameScene from "@App/Scenes/GameScene";
+import Mage from "../Mage";
 
 export default class Staff extends GameObject {
   sprite = new Box2(0, 0, 70, 4);
@@ -12,8 +13,8 @@ export default class Staff extends GameObject {
   timerShoot: Timer = new Timer(500);
   shoots: Magic[] = [];
 
-  constructor(private readonly mage: Mage) {
-    super();
+  constructor(scene: GameScene, private readonly mage: Mage) {
+    super(scene);
     this.sprite.fillColor = "brown";
     this.sprite.setOriginX(20);
   }
@@ -30,7 +31,7 @@ export default class Staff extends GameObject {
     if (!this.timerShoot.run().hasElapsed()) return;
     if (!mouse.isDown) return;
 
-    const magic = new Magic();
+    const magic = new Magic(this.scene);
 
     magic.sprite.relativeWith(this.sprite, {
       x: 30,
@@ -49,15 +50,18 @@ export default class Staff extends GameObject {
     this.timerShoot.reset();
   }
 
-  update() {
+  onUpdate() {
     this.onFixInMage();
     this.onRotate();
     this.onShoot();
-    this.shoots.forEach((s) => s.update());
   }
 
-  render() {
+  onUpdateChild(): void {
+    this.shoots.forEach((s) => s.callUpdate());
+  }
+
+  onRender() {
     this.sprite.fill(canvas.context);
-    this.shoots.forEach((s) => s.render());
+    this.shoots.forEach((s) => s.callRender());
   }
 }

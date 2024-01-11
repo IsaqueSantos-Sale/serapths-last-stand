@@ -1,32 +1,28 @@
 import Arc2 from "@Src/Geometries/Arc2";
 import { canvas } from "@Src/index";
 import GameObject from "../GameObject";
+import GameScene from "@App/Scenes/GameScene";
 
 export default class Magic extends GameObject {
   sprite = new Arc2(0, 0, 5);
 
   speed = 10;
 
-  constructor() {
-    super();
+  constructor(scene: GameScene) {
+    super(scene);
     this.sprite.fillColor = "blue";
   }
-
-  destroy = () => {};
-
-  destroyOn() {}
 
   onMoviment() {
     this.sprite.position.x += this.sprite.getDirectionX() * this.speed;
     this.sprite.position.y += this.sprite.getDirectionY() * this.speed;
   }
 
-  update() {
+  onUpdate() {
     this.onMoviment();
-    this.destroyOn();
   }
 
-  render() {
+  onRender() {
     this.sprite.fill(canvas.context);
   }
 }
