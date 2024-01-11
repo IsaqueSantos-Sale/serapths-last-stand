@@ -1,4 +1,4 @@
-import Box2 from "@Src/Geometries/Box2";
+import Box2 from "@Src/Resources/Geometries/Box2";
 import { canvas } from "@Src/index";
 import GameObject from "../GameObject";
 import GameScene from "@App/Scenes/GameScene";

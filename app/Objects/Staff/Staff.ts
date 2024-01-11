@@ -1,6 +1,6 @@
-import Box2 from "@Src/Geometries/Box2";
+import Box2 from "@Src/Resources/Geometries/Box2";
 import Magic from "../Magic";
-import getDirection from "@Src/Geometries/Maths/getDirection";
+import getDirection from "@Src/Resources/Geometries/Maths/getDirection";
 import GameObject from "../GameObject";
 import Timer from "@Src/Events/Timer";
 import { canvas, mouse } from "@Src/index";

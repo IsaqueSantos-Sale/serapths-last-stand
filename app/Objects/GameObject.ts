@@ -1,5 +1,5 @@
 import GameScene from "@App/Scenes/GameScene";
-import Geometrie from "@Src/Geometries/Geometrie";
+import Geometrie from "@Src/Resources/Geometries/Geometrie";
 
 export default abstract class GameObject {
   private static id: number = 0;

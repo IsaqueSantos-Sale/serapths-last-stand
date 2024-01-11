@@ -1,4 +1,4 @@
-import Box2 from "@Src/Geometries/Box2";
+import Box2 from "@Src/Resources/Geometries/Box2";
 import { canvas, keyboard } from "@Src/index";
 import Floor from "../Floor";
 import Staff from "../Staff";
