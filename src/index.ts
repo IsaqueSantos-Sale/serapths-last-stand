@@ -14,12 +14,22 @@ export const scenes = new GameScenesHandler();
 
 keyboard.addKeys(["Space", "KeyA", "KeyW", "KeyS", "KeyD"]);
 
+loop.init = () => {
+  const scene = scenes.current();
+
+  if (scene) {
+    scene.onInit();
+  }
+};
+
 loop.update = () => {
   const scene = scenes.current();
 
   if (scene) {
     scene.onUpdate();
   }
+
+  mouse.reset();
 };
 
 loop.render = () => {

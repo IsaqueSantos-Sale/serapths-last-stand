@@ -6,6 +6,10 @@ export default abstract class GameScene {
 
   constructor(readonly name: string) {}
 
+  onInit() {
+    this.objects.callInits();
+  }
+
   onUpdate() {
     this.objects.callUpdates();
   }

@@ -14,10 +14,12 @@ export default abstract class GameObject {
     this._id = GameObject.id;
     this.scene = scene;
     this.tags = tags;
+
     this.onUpdate = this.onUpdate.bind(this);
     this.onUpdateChild = this.onUpdateChild.bind(this);
     this.onCollider = this.onCollider.bind(this);
     this.onRender = this.onRender.bind(this);
+    this.onInit = this.onInit.bind(this);
   }
 
   id(): string {
@@ -35,10 +37,15 @@ export default abstract class GameObject {
 
   destroy = () => {};
 
+  onInit() {}
   onUpdate() {}
   onCollider() {}
   onUpdateChild() {}
   onRender() {}
+
+  callInits() {
+    this.onInit();
+  }
 
   callUpdate() {
     this.onUpdate();

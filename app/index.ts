@@ -1,8 +1,8 @@
 import { scenes } from "@Src/index";
 import ArenaScene from "./Scenes/ArenaScene";
+import MenuSecene from "./Scenes/MenuScene";
 
-const arena_scene = new ArenaScene();
+scenes.add(new ArenaScene());
+scenes.add(new MenuSecene());
 
-scenes.add(arena_scene);
-
-scenes.use("arena");
+scenes.use("menu");

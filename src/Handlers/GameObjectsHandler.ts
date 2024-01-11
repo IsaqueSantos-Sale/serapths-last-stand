@@ -50,6 +50,13 @@ export default class GameObjectsHandler {
     return objects;
   }
 
+  callInits() {
+    for (const key in this.gameObjects) {
+      const object = this.gameObjects[key];
+      object.callInits();
+    }
+  }
+
   callUpdates() {
     for (const key in this.gameObjects) {
       const object = this.gameObjects[key];
