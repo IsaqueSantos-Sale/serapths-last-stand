@@ -1,15 +1,10 @@
-import Axes from "./Modules/Axes";
+import Geometrie from "./Geometrie";
 
-export default class Arc2 {
-  readonly position: Axes = new Axes();
-  readonly origin: Axes = new Axes();
-  readonly direction: Axes = new Axes();
-
+export default class Arc2 extends Geometrie {
   radius: number = 1;
-  fillColor = "black";
-  rotate = 0;
 
   constructor(x: number, y: number, radius: number) {
+    super();
     this.position.set(x, y);
     this.radius = radius;
   }

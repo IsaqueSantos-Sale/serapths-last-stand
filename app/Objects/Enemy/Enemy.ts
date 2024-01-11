@@ -2,8 +2,6 @@ import Box2 from "@Src/Geometries/Box2";
 import Object from "../Object";
 import { canvas } from "@Src/index";
 import Mage from "../Mage";
-import directionTo from "@Src/Maths/directionTo";
-import rotateToDirection from "@Src/Maths/rotateToDirection";
 
 export default class Enemy extends Object {
   sprite: Box2 = new Box2(200, 100, 60, 20);
@@ -23,11 +21,14 @@ export default class Enemy extends Object {
 
   followCurrentTarget() {
     if (!this.currentTarget) return;
-    directionTo(this, this.getPosition(), this.currentTarget.getPosition(), 1);
-    rotateToDirection(
-      this,
-      this.getPosition(),
-      this.currentTarget.getPosition()
+    this.sprite.directionTo(
+      this.sprite.getPosition(),
+      this.currentTarget.sprite.getPosition(),
+      1
+    );
+    this.sprite.rotateToDirection(
+      this.sprite.getPosition(),
+      this.currentTarget.sprite.getPosition()
     );
   }
 

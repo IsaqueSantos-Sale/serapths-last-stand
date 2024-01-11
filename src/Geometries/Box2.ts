@@ -1,14 +1,11 @@
+import Geometrie from "./Geometrie";
 import Axes from "./Modules/Axes";
 
-export default class Box2 {
-  readonly position: Axes = new Axes();
+export default class Box2 extends Geometrie {
   readonly size: Axes = new Axes();
-  readonly origin: Axes = new Axes();
-  readonly direction: Axes = new Axes();
-  rotate: number = 0;
-  fillColor: string = "black";
 
   constructor(x: number, y: number, sizeX: number, sizeY: number) {
+    super();
     this.position.set(x, y);
     this.size.set(sizeX, sizeY);
     this.origin.set(sizeX / 2, sizeY / 2);

@@ -17,8 +17,8 @@ export default class Magic extends Object {
   destroyOn() {}
 
   onMoviment() {
-    this.sprite.position.x += this.getDirectionX() * this.speed;
-    this.sprite.position.y += this.getDirectionY() * this.speed;
+    this.sprite.position.x += this.sprite.getDirectionX() * this.speed;
+    this.sprite.position.y += this.sprite.getDirectionY() * this.speed;
   }
 
   update() {

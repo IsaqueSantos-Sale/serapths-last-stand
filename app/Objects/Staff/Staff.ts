@@ -1,10 +1,8 @@
 import Box2 from "@Src/Geometries/Box2";
 import Mage from "../Mage";
 import { canvas, mouse } from "@Src/index";
-import relativeWith from "@Src/Maths/relativeWith";
-import rotateToDirection from "@Src/Maths/rotateToDirection";
 import Magic from "../Magic";
-import getDirection from "@Src/Maths/getDirection";
+import getDirection from "@Src/Geometries/Maths/getDirection";
 import Object from "../Object";
 import Timer from "@Src/Events/Timer";
 
@@ -17,15 +15,15 @@ export default class Staff extends Object {
   constructor(private readonly mage: Mage) {
     super();
     this.sprite.fillColor = "brown";
-    this.setOriginX(20);
+    this.sprite.setOriginX(20);
   }
 
   onRotate() {
-    rotateToDirection(this, this.transladed(), mouse);
+    this.sprite.rotateToDirection(this.sprite.transladed(), mouse);
   }
 
   onFixInMage() {
-    relativeWith(this, this.mage);
+    this.sprite.relativeWith(this.mage.sprite);
   }
 
   onShoot() {
@@ -34,11 +32,13 @@ export default class Staff extends Object {
 
     const magic = new Magic();
 
-    relativeWith(magic, this, {
+    magic.sprite.relativeWith(this.sprite, {
       x: 30,
     });
 
-    magic.setDirection(getDirection(magic.transladed(), mouse));
+    const magicDirection = getDirection(magic.sprite.transladed(), mouse);
+
+    magic.sprite.setDirection(magicDirection);
 
     magic.destroy = () => {
       delete this.shoots[this.shoots.length];
