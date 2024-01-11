@@ -3,7 +3,7 @@ import GameObject from "@App/Objects/GameObject";
 export type GameObjects = Record<string, GameObject>;
 export type FindReturn = GameObject | null;
 
-export default class GameObjectsProvider {
+export default class GameObjectsHandler {
   private readonly gameObjects: GameObjects = {};
 
   constructor() {

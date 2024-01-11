@@ -3,7 +3,7 @@ import UniquiError from "@Src/Errors/UniquiError";
 
 export type Scenes = Record<string, GameScene>;
 
-export default class GameScenesProvider {
+export default class GameScenesHandler {
   private readonly _scenes: Scenes = {};
   private _current: GameScene | null = null;
 

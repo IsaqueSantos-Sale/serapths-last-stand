@@ -1,7 +1,7 @@
-import GameObjectsProvider from "@Src/Providers/GameObjectsProvider";
+import GameObjectsHandler from "@Src/Handlers/GameObjectsHandler";
 
 export default abstract class GameScene {
-  readonly objects: GameObjectsProvider = new GameObjectsProvider();
+  readonly objects: GameObjectsHandler = new GameObjectsHandler();
 
   constructor(readonly name: string) {}
 
