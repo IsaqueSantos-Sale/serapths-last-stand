@@ -2,7 +2,7 @@ import { scenes } from "@Src/index";
 import ArenaScene from "./Scenes/ArenaScene";
 import MenuSecene from "./Scenes/MenuScene";
 
-scenes.add(new ArenaScene());
-scenes.add(new MenuSecene());
+scenes.add(ArenaScene);
+scenes.add(MenuSecene);
 
 scenes.use("menu");

@@ -140,8 +140,7 @@ export default class ArenaScene extends GameScene {
   ];
 
   constructor() {
-    super("arena");
-
+    super();
     const mage = new Mage(this).name("player");
     const enemy = new Enemy(this);
 

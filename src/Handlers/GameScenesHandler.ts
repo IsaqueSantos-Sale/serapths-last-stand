@@ -1,18 +1,24 @@
 import GameScene from "@App/Scenes/GameScene";
 import UniquiError from "@Src/Errors/UniquiError";
+import { loop } from "..";
 
-export type Scenes = Record<string, GameScene>;
+export type GameSceneConstructor = new () => GameScene;
+export type Scenes = Record<string, GameSceneConstructor>;
 
 export default class GameScenesHandler {
   private readonly _scenes: Scenes = {};
   private _current: GameScene | null = null;
 
-  add(scene: GameScene): never | void {
-    if (scene.name in this._scenes) {
+  private _getName(scene: GameSceneConstructor): string {
+    return scene["name"].toLocaleLowerCase().replace("scene", "");
+  }
+
+  add(scene: GameSceneConstructor): never | void {
+    const name = this._getName(scene);
+    if (name in this._scenes) {
       throw new UniquiError(`Scene with name ${scene.name} already defined`);
     }
-
-    this._scenes[scene.name] = scene;
+    this._scenes[name] = scene;
   }
 
   current(): GameScene | null {
@@ -20,6 +26,9 @@ export default class GameScenesHandler {
   }
 
   use(name: string) {
-    this._current = this._scenes[name] ?? null;
+    if (!(name in this._scenes)) return;
+
+    this._current = new this._scenes[name]();
+    loop.reset();
   }
 }

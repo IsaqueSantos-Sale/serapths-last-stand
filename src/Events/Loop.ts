@@ -5,6 +5,10 @@ export default class Loop {
 
   constructor(readonly time: Time) {}
 
+  reset() {
+    this._firstLoop = true;
+  }
+
   init = () => {};
   update = () => {};
   render = () => {};

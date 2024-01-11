@@ -6,6 +6,7 @@ import GravityY from "@Src/Physical/GravityY";
 import colliderBox2 from "@Src/colliders/colliderBox2";
 import GameObject from "../GameObject";
 import GameScene from "@App/Scenes/GameScene";
+import MageAttributes from "./MageAttributes";
 
 export default class Mage extends GameObject {
   sprite = new Box2(100, 100, 30, 60);
@@ -19,6 +20,8 @@ export default class Mage extends GameObject {
     maxHeight: 30,
     actived: false,
   };
+
+  readonly attributes: MageAttributes = new MageAttributes();
 
   constructor(scene: GameScene) {
     super(scene);
@@ -38,7 +41,10 @@ export default class Mage extends GameObject {
       this.jump.totalHeight += this.gravity.getVelocity();
     }
 
-    if (this.jump.actived && this.jump.totalHeight >= this.jump.maxHeight) {
+    if (
+      this.jump.actived &&
+      this.jump.totalHeight >= this.attributes.jumpHeight
+    ) {
       this.jump.actived = false;
       this.jump.totalHeight = 0;
       this.gravity.resetAndInvert();
@@ -54,11 +60,11 @@ export default class Mage extends GameObject {
     const { isDown } = keyboard;
 
     if (isDown("KeyA")) {
-      position.x -= 4;
+      position.x -= this.attributes.speed;
     }
 
     if (isDown("KeyD")) {
-      position.x += 4;
+      position.x += this.attributes.speed;
     }
   }
 

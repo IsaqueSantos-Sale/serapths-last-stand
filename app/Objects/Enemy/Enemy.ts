@@ -1,6 +1,6 @@
 import Box2 from "@Src/Resources/Geometries/Box2";
 import GameObject from "../GameObject";
-import { canvas } from "@Src/index";
+import { canvas, mouse, scenes } from "@Src/index";
 import Mage from "../Mage";
 import GameScene from "@App/Scenes/GameScene";
 
@@ -34,6 +34,9 @@ export default class Enemy extends GameObject {
   }
 
   onUpdate() {
+    if (mouse.downInBox(this.sprite, true)) {
+      scenes.use("menu");
+    }
     this.findTarget();
     this.followCurrentTarget();
   }
