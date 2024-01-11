@@ -3,10 +3,10 @@ import Mage from "../Mage";
 import { canvas, mouse } from "@Src/index";
 import Magic from "../Magic";
 import getDirection from "@Src/Geometries/Maths/getDirection";
-import Object from "../Object";
+import GameObject from "../GameObject";
 import Timer from "@Src/Events/Timer";
 
-export default class Staff extends Object {
+export default class Staff extends GameObject {
   sprite = new Box2(0, 0, 70, 4);
 
   timerShoot: Timer = new Timer(500);

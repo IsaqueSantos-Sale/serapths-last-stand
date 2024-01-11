@@ -4,9 +4,9 @@ import Floor from "../Floor";
 import Staff from "../Staff";
 import GravityY from "@Src/Physical/GravityY";
 import colliderBox2 from "@Src/colliders/colliderBox2";
-import Object from "../Object";
+import GameObject from "../GameObject";
 
-export default class Mage extends Object {
+export default class Mage extends GameObject {
   sprite = new Box2(100, 100, 30, 60);
   gravity = new GravityY(1.3);
   staff = new Staff(this);

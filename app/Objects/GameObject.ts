@@ -1,5 +1,5 @@
 import Geometrie from "@Src/Geometries/Geometrie";
 
-export default abstract class Object {
+export default abstract class GameObject {
   abstract sprite: Geometrie;
 }

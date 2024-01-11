@@ -1,8 +1,8 @@
 import Arc2 from "@Src/Geometries/Arc2";
 import { canvas } from "@Src/index";
-import Object from "../Object";
+import GameObject from "../GameObject";
 
-export default class Magic extends Object {
+export default class Magic extends GameObject {
   sprite = new Arc2(0, 0, 5);
 
   speed = 10;
