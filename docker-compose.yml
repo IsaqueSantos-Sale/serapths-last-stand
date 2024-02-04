@@ -1,0 +1,9 @@
+services:
+  web:
+    image: isaqueclaudino/webpack-ts
+    restart: always
+    ports:
+      - 8080:8080
+    volumes:
+      - ./:/App
+    command: npm run serve
