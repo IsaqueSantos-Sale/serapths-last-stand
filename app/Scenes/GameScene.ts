@@ -4,6 +4,12 @@ import { canvas } from "@Src/index";
 export default abstract class GameScene {
   readonly objects: GameObjectsHandler = new GameObjectsHandler();
 
+  constructor() {
+    this.onInit = this.onInit.bind(this);
+    this.onUpdate = this.onUpdate.bind(this);
+    this.onRender = this.onRender.bind(this);
+  }
+
   onInit() {
     this.objects.callInits();
   }

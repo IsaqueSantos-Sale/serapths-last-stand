@@ -13,10 +13,7 @@ export default class Magic extends GameObject {
     this.sprite.fillColor = "blue";
   }
 
-  onMoviment() {
-    this.sprite.position.x += this.sprite.getDirectionX() * this.speed;
-    this.sprite.position.y += this.sprite.getDirectionY() * this.speed;
-  }
+  onMoviment() {}
 
   onUpdate() {
     this.onMoviment();

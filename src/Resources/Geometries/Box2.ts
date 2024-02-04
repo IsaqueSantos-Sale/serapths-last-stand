@@ -1,33 +1,38 @@
+import Vector2 from "./Maths/Maths/Vector2";
 import Geometrie from "./Geometrie";
-import Axes from "./Modules/Axes";
 
 export default class Box2 extends Geometrie {
-  readonly size: Axes = new Axes();
+  readonly size: Vector2 = new Vector2();
 
-  constructor(x: number, y: number, sizeX: number, sizeY: number) {
+  constructor(x: number, y: number, width: number, height: number) {
     super();
-    this.position.set(x, y);
-    this.size.set(sizeX, sizeY);
-    this.origin.set(sizeX / 2, sizeY / 2);
+    this.position.def(x, y);
+    this.size.def(width, height);
+    this.origin.def(width / 2, height / 2); // defined with center rect
   }
 
-  centerX(): number {
-    return this.position.x + this.size.x / 2;
+  width(): number {
+    return this.size.X();
   }
 
-  centerY(): number {
-    return this.position.y + this.size.y / 2;
+  height(): number {
+    return this.size.Y();
   }
 
   fill(ctx: CanvasRenderingContext2D) {
     ctx.save();
     ctx.translate(
-      this.position.x + this.origin.x,
-      this.position.y + this.origin.y
+      this.position.X() + this.origin.X(),
+      this.position.Y() + this.origin.Y()
     );
     ctx.rotate(this.rotate);
     ctx.fillStyle = this.fillColor;
-    ctx.fillRect(-this.origin.x, -this.origin.y, this.size.x, this.size.y);
+    ctx.fillRect(
+      -this.origin.X(),
+      -this.origin.Y(),
+      this.width(),
+      this.height()
+    );
     ctx.restore();
   }
 }

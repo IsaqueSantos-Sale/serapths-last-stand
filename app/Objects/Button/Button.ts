@@ -9,11 +9,7 @@ export default class Button extends GameObject {
     this.sprite.fillColor = "white";
   }
 
-  onUpdate(): void {
-    if (mouse.downInBox(this.sprite)) {
-      scenes.use("arena");
-    }
-  }
+  onUpdate(): void {}
 
   onRender(): void {
     this.sprite.fill(canvas.context);

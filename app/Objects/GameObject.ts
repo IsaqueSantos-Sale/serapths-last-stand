@@ -20,6 +20,9 @@ export default abstract class GameObject {
     this.onCollider = this.onCollider.bind(this);
     this.onRender = this.onRender.bind(this);
     this.onInit = this.onInit.bind(this);
+    this.callInits = this.callInits.bind(this);
+    this.callRender = this.callRender.bind(this);
+    this.callUpdate = this.callUpdate.bind(this);
   }
 
   id(): string {

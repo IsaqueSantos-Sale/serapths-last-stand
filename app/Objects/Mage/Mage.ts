@@ -3,14 +3,16 @@ import { canvas, keyboard } from "@Src/index";
 import Floor from "../Floor";
 import Staff from "../Staff";
 import GravityY from "@Src/Physical/GravityY";
-import colliderBox2 from "@Src/colliders/colliderBox2";
 import GameObject from "../GameObject";
 import GameScene from "@App/Scenes/GameScene";
 import MageAttributes from "./MageAttributes";
+import Vector2 from "@Src/Resources/Geometries/Maths/Maths/Vector2";
+import { _DEFAULT_ } from "@Src/global";
 
 export default class Mage extends GameObject {
   sprite = new Box2(100, 100, 30, 60);
-  gravity = new GravityY(1.3);
+  speed = new Vector2(3);
+  gravity = new GravityY();
   staff: Staff;
 
   inFloor = false;
@@ -38,7 +40,7 @@ export default class Mage extends GameObject {
     }
 
     if (this.jump.actived) {
-      this.jump.totalHeight += this.gravity.getVelocity();
+      this.jump.totalHeight += this.gravity.speed();
     }
 
     if (
@@ -59,59 +61,43 @@ export default class Mage extends GameObject {
     const { position } = this.sprite;
     const { isDown } = keyboard;
 
-    if (isDown("KeyA")) {
-      position.x -= this.attributes.speed;
-    }
+    let moviment = 0;
 
-    if (isDown("KeyD")) {
-      position.x += this.attributes.speed;
-    }
+    if (isDown("KeyA")) moviment = -1;
+    if (isDown("KeyD")) moviment = 1;
+
+    const newPos = this.speed.mult(moviment);
+
+    position.sum(newPos);
   }
 
   onBordersCollider() {
-    const { position, size } = this.sprite;
+    const { position } = this.sprite;
     const { resolution } = canvas;
+    const newPos = new Vector2();
 
-    if (position.x <= 0) {
-      position.x = 0;
+    if (position.X() <= 0) {
+      newPos.def(0);
     }
 
-    if (position.x + size.x >= resolution.x) {
-      position.x = resolution.x - size.x;
+    if (position.X() + this.sprite.width() >= resolution.x) {
+      newPos.def(resolution.x - this.sprite.width());
     }
 
-    if (position.y <= 0) {
-      position.y = 0;
+    if (position.Y() <= 0) {
+      newPos.def(_DEFAULT_, 0);
     }
 
-    if (position.y + size.y > resolution.y) {
-      position.y = resolution.y - size.y;
-    }
-  }
-
-  floorsCollider(floors: Floor[]) {
-    for (const floor of floors) {
-      colliderBox2(this.sprite, floor.sprite, {
-        onTop: ({ overlapY }) => {
-          this.gravity.reset();
-          this.inFloor = true;
-          this.sprite.position.y -= overlapY;
-        },
-        onLeft: ({ overlapX }) => {
-          this.sprite.position.x -= overlapX;
-        },
-        onRight: ({ overlapX }) => {
-          this.sprite.position.x += overlapX;
-        },
-      });
+    if (position.Y() + this.sprite.height() > resolution.y) {
+      newPos.def(_DEFAULT_, resolution.y - this.sprite.height());
     }
   }
+
+  floorsCollider(floors: Floor[]) {}
 
   onUpdate() {
-    this.onJump();
-    this.onFallingDown();
-    this.onBordersCollider();
     this.onMovimentationX();
+    this.onBordersCollider();
   }
 
   onCollider() {

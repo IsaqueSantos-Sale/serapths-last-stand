@@ -150,5 +150,7 @@ export default class ArenaScene extends GameScene {
     this.objects.add(enemy);
 
     this.floors.forEach((floor) => this.objects.add(floor));
+
+    console.log(this.floors[0].sprite);
   }
 }

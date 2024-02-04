@@ -1,31 +1,29 @@
+import Vector2 from "@Src/Resources/Geometries/Maths/Maths/Vector2";
+
 export type GravityAxle = { y: number };
 
 export default class GravityY {
-  private acceleration: number = 0;
-  private velocity: number = 0;
+  public readonly acceleration = new Vector2(0, 0.2);
+  public readonly velocity = new Vector2();
   private inverted: boolean = false;
 
-  constructor(acceleration: number) {
-    this.acceleration = acceleration;
-  }
-
-  getVelocity(): number {
-    return this.velocity;
-  }
-
-  apply(axle: GravityAxle) {
-    this.velocity += this.acceleration;
+  apply(target: Vector2) {
+    this.velocity.sum(this.acceleration);
 
     if (this.inverted) {
-      axle.y -= this.velocity;
+      target.sub(this.velocity);
       return;
     }
 
-    axle.y += this.velocity;
+    target.sum(this.velocity);
+  }
+
+  speed(): number {
+    return this.velocity.Y();
   }
 
   reset() {
-    this.velocity = 0;
+    this.velocity.def(0, 0);
   }
 
   invert() {

@@ -9,6 +9,9 @@ export default class GameObjectsHandler {
   constructor() {
     this.add = this.add.bind(this);
     this.findByName = this.findByName.bind(this);
+    this.callInits = this.callInits.bind(this);
+    this.callRenders = this.callRenders.bind(this);
+    this.callUpdates = this.callUpdates.bind(this);
   }
 
   all(): GameObjects {

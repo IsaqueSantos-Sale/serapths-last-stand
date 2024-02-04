@@ -5,4 +5,4 @@ import MenuSecene from "./Scenes/MenuScene";
 scenes.add(ArenaScene);
 scenes.add(MenuSecene);
 
-scenes.use("menu");
+scenes.use("arena");

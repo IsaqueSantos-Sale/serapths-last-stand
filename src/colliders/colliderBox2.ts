@@ -26,11 +26,15 @@ export default function colliderBox2(
 ) {
   const { onDown, onLeft, onRight, onTop, onAny, rule } = handlers;
   const distanceX =
-    box1.position.x + box1.size.x / 2 - (box2.position.x + box2.size.x / 2);
+    box1.position.X() +
+    box1.width() / 2 -
+    (box2.position.X() + box2.width() / 2);
   const distanceY =
-    box1.position.y + box1.size.y / 2 - (box2.position.y + box2.size.y / 2);
-  const sumHalfWidth = box1.size.x / 2 + box2.size.x / 2;
-  const sumHalfHeight = box1.size.y / 2 + box2.size.y / 2;
+    box1.position.Y() +
+    box1.height() / 2 -
+    (box2.position.Y() + box2.height() / 2);
+  const sumHalfWidth = box1.width() / 2 + box2.width() / 2;
+  const sumHalfHeight = box1.height() / 2 + box2.height() / 2;
 
   if (
     Math.abs(distanceX) < sumHalfWidth &&

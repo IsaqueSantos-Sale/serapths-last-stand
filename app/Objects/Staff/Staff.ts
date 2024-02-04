@@ -16,30 +16,17 @@ export default class Staff extends GameObject {
   constructor(scene: GameScene, private readonly mage: Mage) {
     super(scene);
     this.sprite.fillColor = "brown";
-    this.sprite.setOriginX(20);
   }
 
-  onRotate() {
-    this.sprite.rotateToDirection(this.sprite.transladed(), mouse);
-  }
+  onRotate() {}
 
-  onFixInMage() {
-    this.sprite.relativeWith(this.mage.sprite);
-  }
+  onFixInMage() {}
 
   onShoot() {
     if (!this.timerShoot.run().hasElapsed()) return;
     if (!mouse.isDown) return;
 
     const magic = new Magic(this.scene);
-
-    magic.sprite.relativeWith(this.sprite, {
-      x: 30,
-    });
-
-    const magicDirection = getDirection(magic.sprite.transladed(), mouse);
-
-    magic.sprite.setDirection(magicDirection);
 
     magic.destroy = () => {
       delete this.shoots[this.shoots.length];

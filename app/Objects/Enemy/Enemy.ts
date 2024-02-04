@@ -20,23 +20,9 @@ export default class Enemy extends GameObject {
     this.currentTarget = this.targets[targetsRandomIndex];
   }
 
-  followCurrentTarget() {
-    if (!this.currentTarget) return;
-    this.sprite.directionTo(
-      this.sprite.getPosition(),
-      this.currentTarget.sprite.getPosition(),
-      1
-    );
-    this.sprite.rotateToDirection(
-      this.sprite.getPosition(),
-      this.currentTarget.sprite.getPosition()
-    );
-  }
+  followCurrentTarget() {}
 
   onUpdate() {
-    if (mouse.downInBox(this.sprite, true)) {
-      scenes.use("menu");
-    }
     this.findTarget();
     this.followCurrentTarget();
   }

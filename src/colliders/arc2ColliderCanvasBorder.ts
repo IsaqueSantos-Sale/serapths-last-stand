@@ -18,22 +18,22 @@ export default function arc2ColliderCanvasBorder(
   const { position, radius } = arc;
   const { resolution } = canvas;
 
-  if (position.x <= 0) {
+  if (position.X() <= 0) {
     !onAny || onAny();
     !onLeft || onLeft();
   }
 
-  if (position.x + radius >= resolution.x) {
+  if (position.X() + radius >= resolution.x) {
     !onAny || onAny();
     !onRight || onRight();
   }
 
-  if (position.y <= 0) {
+  if (position.Y() <= 0) {
     !onAny || onAny();
     !onTop || onTop();
   }
 
-  if (position.y + radius >= resolution.y) {
+  if (position.Y() + radius >= resolution.y) {
     !onAny || onAny();
     !onDown || onDown();
   }
