@@ -9,6 +9,11 @@ export default class GameScenesHandler {
   private readonly _scenes: Scenes = {};
   private _current: GameScene | null = null;
 
+  constructor() {
+    this.use = this.use.bind(this);
+    this.add = this.add.bind(this);
+  }
+
   private _getName(scene: GameSceneConstructor): string {
     return scene["name"].toLocaleLowerCase().replace("scene", "");
   }
