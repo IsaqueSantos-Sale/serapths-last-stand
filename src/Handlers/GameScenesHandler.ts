@@ -15,9 +15,9 @@ export default class GameScenesHandler {
 
   add(scene: GameSceneConstructor): never | void {
     const name = this._getName(scene);
-    if (name in this._scenes) {
-      throw new UniquiError(`Scene with name ${scene.name} already defined`);
-    }
+    // if (name in this._scenes) {
+    //   throw new UniquiError(`Scene with name ${scene.name} already defined`);
+    // }
     this._scenes[name] = scene;
   }
 
