@@ -11,7 +11,6 @@ const stylesHandler = "style-loader";
 const config = {
   entry: {
     app: "./app/index.ts",
-    src: "./src/index.ts",
   },
   output: {
     path: path.resolve(__dirname, "dist"),

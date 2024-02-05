@@ -1,6 +1,6 @@
 import GameScene from "@App/Scenes/GameScene";
 import UniquiError from "@Src/Errors/UniquiError";
-import { loop } from "..";
+import { loop } from "@Src/global";
 
 export type GameSceneConstructor = new () => GameScene;
 export type Scenes = Record<string, GameSceneConstructor>;

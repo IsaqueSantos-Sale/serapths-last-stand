@@ -1,6 +1,6 @@
 import Floor from "@App/Objects/Floor";
 import GameScene from "../GameScene";
-import { canvas } from "@Src/index";
+import { canvas } from "@Src/global";
 import Mage from "@App/Objects/Mage";
 import Enemy from "@App/Objects/Enemy";
 
@@ -150,7 +150,5 @@ export default class ArenaScene extends GameScene {
     this.objects.add(enemy);
 
     this.floors.forEach((floor) => this.objects.add(floor));
-
-    console.log(this.floors[0].sprite);
   }
 }

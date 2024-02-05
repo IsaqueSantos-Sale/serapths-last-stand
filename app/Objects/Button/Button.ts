@@ -1,4 +1,4 @@
-import { canvas, mouse, scenes } from "@Src/index";
+import { canvas, mouse, scenes } from "@Src/global";
 import GameObject from "../GameObject";
 import Box2 from "@Src/Resources/Geometries/Box2";
 

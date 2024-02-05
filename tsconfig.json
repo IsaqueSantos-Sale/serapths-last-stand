@@ -15,7 +15,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true
   },
-  "files": ["./src/index.ts","./app/index.ts"],
-  "include": ["./src/**/*.ts","./declarations.d.ts", "./app/**/*.ts"],
+  "files": ["./app/index.ts"],
+  "include": ["./src/**/*.ts", "./declarations.d.ts", "./app/**/*.ts"],
   "exclude": ["./node_modules"]
 }

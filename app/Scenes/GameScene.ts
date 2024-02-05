@@ -1,5 +1,5 @@
+import { canvas } from "@Src/global";
 import GameObjectsHandler from "@Src/Handlers/GameObjectsHandler";
-import { canvas } from "@Src/index";
 
 export default abstract class GameScene {
   readonly objects: GameObjectsHandler = new GameObjectsHandler();

@@ -1,4 +1,4 @@
-import { time } from "..";
+import { time } from "@Src/global";
 
 export default class Timer {
   private _timeStamp: number = 0;

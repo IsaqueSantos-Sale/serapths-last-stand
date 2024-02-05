@@ -1,5 +1,5 @@
 import Box2 from "@Src/Resources/Geometries/Box2";
-import { canvas } from "@Src/index";
+import { canvas } from "@Src/global";
 import GameObject from "../GameObject";
 import GameScene from "@App/Scenes/GameScene";
 

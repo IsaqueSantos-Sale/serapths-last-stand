@@ -1,4 +1,5 @@
-import { scenes } from "@Src/index";
+import "./bootstrep";
+import { scenes } from "@Src/global";
 import ArenaScene from "./Scenes/ArenaScene";
 import MenuSecene from "./Scenes/MenuScene";
 

@@ -1,4 +1,4 @@
-import { canvas } from "..";
+import { canvas } from "@Src/global";
 
 export default class Mouse {
   x: number = 0;

@@ -3,7 +3,7 @@ import Magic from "../Magic";
 import getDirection from "@Src/Resources/Geometries/Maths/getDirection";
 import GameObject from "../GameObject";
 import Timer from "@Src/Events/Timer";
-import { canvas, mouse } from "@Src/index";
+import { canvas, mouse } from "@Src/global";
 import GameScene from "@App/Scenes/GameScene";
 import Mage from "../Mage";
 

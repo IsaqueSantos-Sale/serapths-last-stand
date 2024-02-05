@@ -1,5 +1,5 @@
 import Arc2 from "@Src/Resources/Geometries/Arc2";
-import { canvas } from "..";
+import { canvas } from "@Src/global";
 
 type Handler = () => void;
 type Handlers = {

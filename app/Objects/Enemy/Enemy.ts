@@ -1,6 +1,6 @@
 import Box2 from "@Src/Resources/Geometries/Box2";
 import GameObject from "../GameObject";
-import { canvas, mouse, scenes } from "@Src/index";
+import { canvas, mouse, scenes } from "@Src/global";
 import Mage from "../Mage";
 import GameScene from "@App/Scenes/GameScene";
 
